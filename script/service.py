@@ -126,7 +126,7 @@ def default():
                 #Success
                 data["success"] = True
 
-        return jsonify(data)
+#        return jsonify(data)
 
             # load the images -- the original, the original + contrast,
             # and the original + photoshop
@@ -162,7 +162,7 @@ def default():
          
 
 
-#        return jsonify(data)
+        return jsonify(data)
 
 # Run de application
 app.run(host='0.0.0.0',port=port, threaded=False)
