@@ -122,10 +122,10 @@ def default():
             plt.show()
             # compare the images
             compare_images(original, contrast, "Original vs. Contrast")
-
             
-            
-              else:
+         
+	
+              if(s>0.75):
                 result = loaded_model.predict(test_image)
             	# print(result)
             	
