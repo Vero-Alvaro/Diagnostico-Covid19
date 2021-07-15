@@ -91,42 +91,9 @@ def default():
 
               if(s<0.75):
                 print("La imagen no coincide con una radiografia de torax, incerte otra imagen")
-              
-            # load the images -- the original, the original + contrast,
-            # and the original + photoshop
-            original = cv2.imread("comparacion/abuelo.jpg")
-            contrast = cv2.imread(test_image)
-            #contrast = cv2.imread("comparacion/abuelo.jpg")
-
-            # convert the images to grayscale and resize 64x64
-            WIDTH=256
-            HEIGHT=256
-
-            original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
-            original= cv2.resize(original, (WIDTH,HEIGHT))
-            contrast = cv2.cvtColor(contrast, cv2.COLOR_BGR2GRAY)
-            contrast= cv2.resize(contrast, (WIDTH,HEIGHT))
-
-
-            # initialize the figure
-            fig = plt.figure("Images")
-            images = ("Original", original), ("Contrast", contrast)
-            # loop over the images
-            for (i, (name, image)) in enumerate(images):
-              # show the image
-              ax = fig.add_subplot(1, 3, i + 1)
-              ax.set_title(name)
-              plt.imshow(image, cmap = plt.cm.gray)
-              plt.axis("off")
-            # show the figure
-            plt.show()
-            # compare the images
-            compare_images(original, contrast, "Original vs. Contrast")
-            
-         
-	
-              if(s>0.75):
-                result = loaded_model.predict(test_image)
+		
+              else:
+		result = loaded_model.predict(test_image)
             	# print(result)
             	
                 # Resultados
@@ -160,6 +127,42 @@ def default():
                 data["success"] = True
 
         return jsonify(data)
+
+            # load the images -- the original, the original + contrast,
+            # and the original + photoshop
+            original = cv2.imread("comparacion/abuelo.jpg")
+            contrast = cv2.imread(test_image)
+            #contrast = cv2.imread("comparacion/abuelo.jpg")
+
+            # convert the images to grayscale and resize 64x64
+            WIDTH=256
+            HEIGHT=256
+
+            original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
+            original= cv2.resize(original, (WIDTH,HEIGHT))
+            contrast = cv2.cvtColor(contrast, cv2.COLOR_BGR2GRAY)
+            contrast= cv2.resize(contrast, (WIDTH,HEIGHT))
+
+
+            # initialize the figure
+            fig = plt.figure("Images")
+            images = ("Original", original), ("Contrast", contrast)
+            # loop over the images
+            for (i, (name, image)) in enumerate(images):
+              # show the image
+              ax = fig.add_subplot(1, 3, i + 1)
+              ax.set_title(name)
+              plt.imshow(image, cmap = plt.cm.gray)
+              plt.axis("off")
+            # show the figure
+            plt.show()
+            # compare the images
+            compare_images(original, contrast, "Original vs. Contrast")
+            
+         
+
+
+#        return jsonify(data)
 
 # Run de application
 app.run(host='0.0.0.0',port=port, threaded=False)
