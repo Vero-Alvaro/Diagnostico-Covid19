@@ -130,7 +130,7 @@ def default():
 
             # load the images -- the original, the original + contrast,
             # and the original + photoshop
-            original = cv2.imread("comparacion/abuelo.jpg")
+            original = cv2.imread("abuelo.jpg")
             contrast = cv2.imread(test_image)
             #contrast = cv2.imread("comparacion/abuelo.jpg")
 
