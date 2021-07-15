@@ -69,7 +69,8 @@ def default():
             test_image = test_image/255.
             test_image = cv2.resize(test_image, (WIDTH,HEIGHT))
             test_image = test_image.reshape(-1,WIDTH,HEIGHT,1)
-            
+            result = loaded_model.predict(test_image)
+
             
             def compare_images(imageA, imageB, title):
               # compute the mean squared error and structural similarity
@@ -93,7 +94,6 @@ def default():
                 print("La imagen no coincide con una radiografia de torax, incerte otra imagen")
 		
               else:
-		result = loaded_model.predict(test_image)
             	# print(result)
             	
                 # Resultados
