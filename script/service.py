@@ -76,45 +76,41 @@ def default():
             contrast= cv2.resize(contrast, (WIDTH,HEIGHT))
 
             s=ssim(original, contrast)
-	
-            if(s>0.75):
-                print("Esta imagen  coincide con una raiografía de torax")
-
-             #   result = loaded_model.predict(test_image)
-             #   # print(result)
-		
-		## Resultados
-                #if(result[0][0]>result[0][1] and result[0][0]>result[0][2]):
-                 #   prediction = 0
-
-                #elif(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
-                 #   prediction = 1    
-
-                #else: prediction = 2
-                
-                #CLASSES = ["NORMAL", "COVID-19", "Viral Pneumonia"]
-                #ClassPred = CLASSES[prediction]
-
-                ## print("Pedicción:", ClassPred)
-                ## print("Prob:", "{0:.2f}".format(ClassProb))
-
-                ##Results as Json
-                #data["predictions"] = []
-                #if(prediction == 0):
-                
-                 #   r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,0]*100)}
-                #elif(prediction == 1):
-                 #   r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,1]*100)}
-                #else:
-                 #   r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,2]*100)}
-                
-                #data["predictions"].append(r)
-
-                ##Success
-                #data["success"] = True
-		
-            else:
+            if(s<0.75):
                 print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
+
+            result = loaded_model.predict(test_image)
+            	# print(result)
+            	
+            # Resultados
+            if(result[0][0]>result[0][1] and result[0][0]>result[0][2]): 
+                prediction = 0
+
+            elif(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
+                prediction = 1    
+
+            else: prediction = 2
+                
+            CLASSES = ["NORMAL", "COVID-19", "Viral Pneumonia"]
+            ClassPred = CLASSES[prediction]
+
+            # print("Pedicción:", ClassPred)
+            # print("Prob:", "{0:.2f}".format(ClassProb))
+
+            #Results as Json
+            data["predictions"] = []
+            if(prediction == 0):
+                
+                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,0]*100)}
+            elif(prediction == 1):
+                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,1]*100)}
+            else:
+                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,2]*100)}
+                
+            data["predictions"].append(r)
+
+            #Success
+            data["success"] = True
 
     return jsonify(data)
 
