@@ -84,7 +84,7 @@ def default():
                 # print(result)
 		
 		# Resultados
-		if(result[0][0]>result[0][1] and result[0][0]>result[0][2]):
+                if(result[0][0]>result[0][1] and result[0][0]>result[0][2]):
                     prediction = 0
 
                 elif(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
