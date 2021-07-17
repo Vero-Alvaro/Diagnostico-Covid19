@@ -80,8 +80,8 @@ def default():
                 print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
 		
             else:
-		result = loaded_model.predict(test_image)
-		# print(result)
+                result = loaded_model.predict(test_image)
+                # print(result)
 		
 		# Resultados
 		if(result[0][0]>result[0][1] and result[0][0]>result[0][2]):
