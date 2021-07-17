@@ -69,7 +69,7 @@ def default():
             contrast= cv2.resize(contrast, (WIDTH,HEIGHT))
 
             s=ssim(original, contrast)
-            if(s<0.75):
+            if(s<0.8):
                 print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
                 data["success"] = False
             
