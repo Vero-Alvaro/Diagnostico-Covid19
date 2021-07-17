@@ -60,8 +60,8 @@ def default():
             original = cv2.imread(filename)
             contrast = cv2.imread(filename)
 		
-            WIDTH=256
-            HEIGHT=256
+            WIDTH=64
+            HEIGHT=64
 		
             original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
             contrast = cv2.cvtColor(contrast, cv2.COLOR_BGR2GRAY)
