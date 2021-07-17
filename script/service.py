@@ -12,6 +12,7 @@ import cv2
 import requests
 import json
 import os
+from skimage.metrics import structural_similarity as ssim
 from werkzeug.utils import secure_filename
 from model_loader import cargarModelo
 
