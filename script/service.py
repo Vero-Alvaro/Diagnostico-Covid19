@@ -65,10 +65,8 @@ def default():
 
             original = cv2.imread("abuelo.jpg")
             contrast = cv2.imread(test_image)
-
-	    WIDTH=256
+            WIDTH=256
             HEIGHT=256
-
 	    original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
             contrast = cv2.cvtColor(contrast, cv2.COLOR_BGR2GRAY)
 	    original= cv2.resize(original, (WIDTH,HEIGHT))
