@@ -76,9 +76,6 @@ def default():
                 data = {"success": False}
             
             else:	
-                WIDTH=64
-                HEIGHT=64
-
                 test_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
                 test_image = test_image/255.
                 test_image1 = cv2.resize(test_image, (WIDTH,HEIGHT))
