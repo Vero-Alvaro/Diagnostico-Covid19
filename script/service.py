@@ -73,8 +73,7 @@ def default():
                 print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
                 data["success"] = False
             
-	    else:
-			
+            else:	
                 WIDTH=64
                 HEIGHT=64
 
