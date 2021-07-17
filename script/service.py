@@ -77,7 +77,7 @@ def default():
             s=ssim(original, contrast)
 	
             if(s<0.75):
-		print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
+                print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
 		
             else:
 		result = loaded_model.predict(test_image)
