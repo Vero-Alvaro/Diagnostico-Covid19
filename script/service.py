@@ -57,7 +57,7 @@ def default():
             print("\nfilename:",filename)
             
 
-            original = cv2.imread("NLeo1.jpeg")
+            original = cv2.imread(filename)
             contrast = cv2.imread(filename)
 		
             WIDTH=256
