@@ -71,7 +71,7 @@ def default():
             s=ssim(original, contrast)
             print("SSIM: %.2f" % (s))
 
-            if(s<0.24):
+            if(s<0.25):
                 print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
                 data = {"success": False}
             
