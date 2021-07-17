@@ -60,28 +60,31 @@ def default():
 
             test_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
             test_image = test_image/255.
-            test_image = cv2.resize(test_image, (WIDTH,HEIGHT))
-            test_image = test_image.reshape(-1,WIDTH,HEIGHT,1)
+            test_image1 = cv2.resize(test_image, (WIDTH,HEIGHT))
+            test_image = test_image1.reshape(-1,WIDTH,HEIGHT,1)
 
             original = cv2.imread("abuelo.jpg")
-            contrast = cv2.imread(test_image)
+            contrast = cv2.imread(filename)
+		
             WIDTH=256
             HEIGHT=256
-	    original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
+		
+            original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
             contrast = cv2.cvtColor(contrast, cv2.COLOR_BGR2GRAY)
-	    original= cv2.resize(original, (WIDTH,HEIGHT))
-	    contrast= cv2.resize(contrast, (WIDTH,HEIGHT))
-	    s=ssim(original, contrast)
+            original= cv2.resize(original, (WIDTH,HEIGHT))
+            contrast= cv2.resize(contrast, (WIDTH,HEIGHT))
 
+            s=ssim(original, contrast)
+	
             if(s<0.75):
 		print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
 		
-	    else:		
-                result = loaded_model.predict(test_image)
-            	# print(result)
-            	
-                # Resultados
-                if(result[0][0]>result[0][1] and result[0][0]>result[0][2]): 
+            else:
+		result = loaded_model.predict(test_image)
+		# print(result)
+		
+		# Resultados
+		if(result[0][0]>result[0][1] and result[0][0]>result[0][2]):
                     prediction = 0
 
                 elif(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
