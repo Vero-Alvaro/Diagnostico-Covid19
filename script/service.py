@@ -112,7 +112,7 @@ def default():
                 data["success"] = True
 		
             else:
-		print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
+                print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
 
     return jsonify(data)
 
