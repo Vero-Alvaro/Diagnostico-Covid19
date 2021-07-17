@@ -57,7 +57,7 @@ def default():
             print("\nfilename:",filename)
             
 
-            original = cv2.imread("NLeo1.jpeg")
+            original = cv2.imread("NLeo4.jpeg")
             contrast = cv2.imread(filename)
 		
             WIDTH=64
@@ -71,7 +71,7 @@ def default():
             s=ssim(original, contrast)
             print("SSIM: %.2f" % (s))
 
-            if(s<0.25):
+            if(s<0.24):
                 print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
                 data = {"success": False}
             
