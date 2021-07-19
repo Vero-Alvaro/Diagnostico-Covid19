@@ -73,7 +73,7 @@ def default():
 		
             if(s<0.15):
                 print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
-                data = {"error": True}
+                #data = {"error": True}
             
             else:	
                 test_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
