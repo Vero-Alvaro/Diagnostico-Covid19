@@ -88,7 +88,7 @@ def default():
                     prediction = 1    
 		
                 elif(s<0.15):
-                prediction = 3
+                    prediction = 3
 
                 else: prediction = 2
                 
