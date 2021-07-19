@@ -70,7 +70,11 @@ def default():
 
             s=ssim(original, contrast)
             print("SSIM: %.2f" % (s))
-
+		
+            if(s<0.15):
+                print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
+                data = {"error": True}
+            
             else:	
                 test_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
                 test_image = test_image/255.
