@@ -71,10 +71,6 @@ def default():
             s=ssim(original, contrast)
             print("SSIM: %.2f" % (s))
 
-            if(s<0.15):
-                print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
-               # data = {"error": True}
-            
             else:	
                 test_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
                 test_image = test_image/255.
@@ -90,10 +86,13 @@ def default():
 
                 elif(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
                     prediction = 1    
+		
+                elif(s<0.15):
+                prediction = 3
 
                 else: prediction = 2
                 
-                CLASSES = ["NORMAL", "COVID-19", "Viral Pneumonia"]
+                CLASSES = ["NORMAL", "COVID-19", "Viral Pneumonia", "La imagen no es una radiografía de Torax"]
                 ClassPred = CLASSES[prediction]
 
                 # print("Pedicción:", ClassPred)
@@ -106,6 +105,8 @@ def default():
                     r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,0]*100)}
                 elif(prediction == 1):
                     r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,1]*100)}
+                elif(prediction == 3):
+                    r = {"label": ClassPred}
                 else:
                     r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,2]*100)}
                 
