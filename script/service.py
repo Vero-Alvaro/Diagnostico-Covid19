@@ -71,52 +71,49 @@ def default():
             s=ssim(original, contrast)
             print("SSIM: %.2f" % (s))
 		
-            if(s<0.1):
-                print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
-                #data = {"error": True}
-            
-            else:	
-                test_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-                test_image = test_image/255.
-                test_image1 = cv2.resize(test_image, (WIDTH,HEIGHT))
-                test_image = test_image1.reshape(-1,WIDTH,HEIGHT,1)
+            test_image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+            test_image = test_image/255.
+            test_image1 = cv2.resize(test_image, (WIDTH,HEIGHT))
+            test_image = test_image1.reshape(-1,WIDTH,HEIGHT,1)
 
-                result = loaded_model.predict(test_image)
-            	# print(result)
+            result = loaded_model.predict(test_image)
+            # print(result)
             	
-                # Resultados
-                if(result[0][0]>result[0][1] and result[0][0]>result[0][2]): 
-                    prediction = 0
+            # Resultados
+            if(result[0][0]>result[0][1] and result[0][0]>result[0][2]): 
+                prediction = 0
 
-                if(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
-                    prediction = 1    
+            if(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
+                prediction = 1    
 		
-                elif(result[0][2]>result[0][0] and result[0][2]>result[0][1]):
-                    prediction = 2
+            if(result[0][2]>result[0][0] and result[0][2]>result[0][1]):
+                prediction = 2
 
-                else: prediction = 3
+            if(s<0.1): 
+                prediction = 3
+                print("Esta imagen no coincide con una raiografía de torax, por favor elija otra")
                 
-                CLASSES = ["NORMAL", "COVID-19", "Viral Pneumonia", "La imagen no es una radiografía de Torax"]
-                ClassPred = CLASSES[prediction]
+            CLASSES = ["NORMAL", "COVID-19", "Viral Pneumonia", "La imagen no es una radiografía de Torax"]
+            ClassPred = CLASSES[prediction]
 
-                # print("Pedicción:", ClassPred)
-                # print("Prob:", "{0:.2f}".format(ClassProb))
+            # print("Pedicción:", ClassPred)
+            # print("Prob:", "{0:.2f}".format(ClassProb))
 
-                #Results as Json
-                data["predictions"] = []
-                if(prediction == 0):     
-                    r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,0]*100)}
-                if(prediction == 1):
-                    r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,1]*100)}
-                elif(prediction == 2):
-                    r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,2]*100)}
-                else:
-                    r = {"label": ClassPred}
+            #Results as Json
+            data["predictions"] = []
+            if(prediction == 0):     
+                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,0]*100), "%"}
+            if(prediction == 1):
+                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,1]*100), "%"}
+            elif(prediction == 2):
+                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,2]*100), "%"}
+            else:
+                r = {"label": ClassPred}
                 
-                data["predictions"].append(r)
+            data["predictions"].append(r)
 
-                #Success
-                data["success"] = True
+            #Success
+            data["success"] = True
 
     return jsonify(data)
 
