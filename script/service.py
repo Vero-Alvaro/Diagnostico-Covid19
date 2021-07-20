@@ -102,11 +102,11 @@ def default():
             #Results as Json
             data["predictions"] = []
             if(prediction == 0):     
-                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,0]*100), "%"}
+                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,0]*100)}
             if(prediction == 1):
-                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,1]*100), "%"}
+                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,1]*100)}
             elif(prediction == 2):
-                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,2]*100), "%"}
+                r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,2]*100)}
             else:
                 r = {"label": ClassPred}
                 
