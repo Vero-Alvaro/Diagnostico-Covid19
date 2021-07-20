@@ -88,13 +88,13 @@ def default():
                 if(result[0][0]>result[0][1] and result[0][0]>result[0][2]): 
                     prediction = 0
 
-                elif(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
+                if(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
                     prediction = 1    
 		
-                elif(s<0.1):
-                    prediction = 3
+                elif(result[0][2]>result[0][0] and result[0][2]>result[0][1]):
+                    prediction = 2
 
-                else: prediction = 2
+                else: prediction = 3
                 
                 CLASSES = ["NORMAL", "COVID-19", "Viral Pneumonia", "La imagen no es una radiografía de Torax"]
                 ClassPred = CLASSES[prediction]
@@ -104,15 +104,14 @@ def default():
 
                 #Results as Json
                 data["predictions"] = []
-                if(prediction == 0):
-                
+                if(prediction == 0):     
                     r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,0]*100)}
-                elif(prediction == 1):
+                if(prediction == 1):
                     r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,1]*100)}
-                elif(prediction == 3):
-                    r = {"label": ClassPred}
-                else:
+                elif(prediction == 2):
                     r = {"label": ClassPred, "score": "{0:.2f}".format(result[0,2]*100)}
+                else:
+                    r = {"label": ClassPred}
                 
                 data["predictions"].append(r)
 
