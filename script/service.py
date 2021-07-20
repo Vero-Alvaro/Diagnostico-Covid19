@@ -91,7 +91,7 @@ def default():
                 elif(result[0][1]>result[0][0] and result[0][1]>result[0][2]): 
                     prediction = 1    
 		
-                elif(s<0.15):
+                elif(s<0.1):
                     prediction = 3
 
                 else: prediction = 2
